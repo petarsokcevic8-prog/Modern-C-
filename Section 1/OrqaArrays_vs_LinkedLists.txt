@@ -1,0 +1,17 @@
+A dynamic array (like std::vector) stores elements in a continuous block of memory. This means elements 
+are next to each other in RAM. Because of that, accessing elements by index is very fast, and the CPU 
+can read memory efficiently.
+
+A doubly linked list is different. Each element is stored separately in memory and contains pointers 
+to the previous and next element. So instead of being in one continuous block, elements can be scattered all over memory.
+
+Both structures can do basic operations like iteration in O(N), but their real performance is different in practice. 
+Dynamic arrays are usually much faster for reading and looping because of cache efficiency and continuous memory. 
+Linked lists are slower to traverse because the CPU has to follow pointers all over memory.
+
+Linked lists are only useful when you need a lot of fast insertions and deletions in the middle, without shifting 
+elements. But even then, in many real cases, dynamic arrays still perform better because memory access is much 
+faster and modern CPUs are optimized for sequential access.
+
+So even if the Big-O looks the same, dynamic arrays are usually preferred in real systems unless there is a very 
+specific reason to use a linked list.

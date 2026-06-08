@@ -1,0 +1,21 @@
+A student implements a simple recursive DFS to go through a very deep folder structure. The function is
+short and clean, and it works fine in normal testing with shallow trees. The code uses recursion, so every
+time it goes deeper into a folder, a new function call is added to the call stack.
+
+Each function call needs to store some basic information like where to return after it finishes, current 
+variables, and the current folder it is working on. This information is stored in the stack memory of the program.
+
+The problem happens when the folder structure becomes extremely deep in production. Instead of a few calls, 
+the recursion goes thousands or even millions of levels deep. This creates a huge number of stack frames that 
+all stay active at the same time.
+
+Even though the server has a lot of free RAM, the crash still happens because the stack memory is limited per 
+process. The stack grows until it reaches its maximum limit, and then it overflows. Once that happens, the operating 
+system stops the program and it crashes with a segmentation fault.
+
+The important thing is that the issue is not about total memory available, but about how the memory is used. 
+The recursive DFS is correct in theory (O(H) space), but in practice it breaks when H becomes too large because it 
+relies on the call stack, which is small and fixed in size compared to the heap.
+
+In short, the algorithm is correct, but the implementation using recursion is not safe for very deep structures, 
+because it can exceed the stack limit even when the system still has plenty of free RAM.
